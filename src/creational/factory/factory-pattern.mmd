@@ -1,0 +1,34 @@
+classDiagram
+    Notification <|.. EmailNotification
+    Notification <|.. SmsNotification
+    NotificationFactory ..> Notification
+
+    class Notification {
+      <<interface>>
+      +send(recipient: string, message: string): void
+    }
+
+    class EmailNotification {
+      +send(recipient: string, message: string): void
+    }
+
+    class SmsNotification {
+      +send(recipient: string, message: string): void
+    }
+
+    class NotificationFactory {
+      <<abstract>>
+      +createNotification(): Notification
+      +notify(recipient: string, message: string): void
+    }
+
+    class EmailNotificationFactory {
+      +createNotification(): Notification
+    }
+
+    class SmsNotificationFactory {
+      +createNotification(): Notification
+    }
+
+    NotificationFactory <|-- EmailNotificationFactory
+    NotificationFactory <|-- SmsNotificationFactory
