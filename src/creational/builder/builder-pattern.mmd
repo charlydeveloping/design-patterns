@@ -1,0 +1,51 @@
+classDiagram
+    class IReportBuilder {
+      <<interface>>
+      +reset()
+      +setTitle(title)
+      +setDateRange(range)
+      +setCategories(categories)
+      +setRegion(region)
+      +getResult() SalesReport
+    }
+
+    class SimpleReportBuilder {
+      -report: SalesReport
+      +reset()
+      +setTitle(title)
+      +setDateRange(range)
+      +setCategories(categories)
+      +setRegion(region)
+      +getResult() SalesReport
+    }
+
+    class DetailedReportBuilder {
+      -report: SalesReport
+      +reset()
+      +setTitle(title)
+      +setDateRange(range)
+      +setCategories(categories)
+      +setRegion(region)
+      +getResult() SalesReport
+    }
+
+    class SalesReport {
+      +title: string
+      +dateRange: string
+      +categories: string[]
+      +region: string
+      +show()
+    }
+
+    class ReportDirector {
+      -builder: IReportBuilder
+      +changeBuilder(builder)
+      +makeSimpleReport(title, range)
+      +makeDetailedReport(title, range, categories, region)
+    }
+
+    IReportBuilder <|.. SimpleReportBuilder
+    IReportBuilder <|.. DetailedReportBuilder
+    SimpleReportBuilder --> SalesReport : builds
+    DetailedReportBuilder --> SalesReport : builds
+    ReportDirector --> IReportBuilder : uses
