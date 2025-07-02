@@ -1,0 +1,35 @@
+classDiagram
+    class Subject {
+        +attach(observer: Observer): void
+        +detach(observer: Observer): void
+        +notify(): void
+    }
+
+    class Observer {
+        <<interface>>
+        +update(): void
+    }
+
+    class OrderSubject {
+        +state: string
+        +attach(observer: Observer): void
+        +detach(observer: Observer): void
+        +notify(): void
+    }
+
+    class AnalyticsObserver {
+        +update(): void
+    }
+
+    class EmailObserver {
+        +update(): void
+    }
+
+    class InventoryObserver {
+        +update(): void
+    }
+
+    Subject <|-- OrderSubject
+    Observer <|.. AnalyticsObserver
+    Observer <|.. EmailObserver
+    Observer <|.. InventoryObserver

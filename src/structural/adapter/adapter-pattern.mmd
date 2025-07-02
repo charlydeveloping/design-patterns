@@ -1,0 +1,16 @@
+classDiagram
+    class Notification {
+        <<interface>>
+        +sendNotification(): void
+    }
+
+    class EmailAdapter {
+        +sendNotification(): void
+    }
+
+    class ExternalEmailService {
+        +sendEmail(): void
+    }
+
+    Notification <|.. EmailAdapter
+    EmailAdapter --> ExternalEmailService

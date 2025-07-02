@@ -1,0 +1,21 @@
+classDiagram
+    class ReportService {
+        +generateReport(): void
+    }
+
+    class ReportDecorator {
+        +reportService: ReportService
+        +generateReport(): void
+    }
+
+    class LoggingReportDecorator {
+        +generateReport(): void
+    }
+
+    class TimingReportDecorator {
+        +generateReport(): void
+    }
+
+    ReportService <|-- ReportDecorator
+    ReportDecorator <|.. LoggingReportDecorator
+    ReportDecorator <|.. TimingReportDecorator

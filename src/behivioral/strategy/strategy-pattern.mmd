@@ -1,0 +1,23 @@
+classDiagram
+    class Context {
+        +strategy: Strategy
+        +setStrategy(strategy: Strategy): void
+        +executeStrategy(): void
+    }
+
+    class Strategy {
+        <<interface>>
+        +calculateShipping(): void
+    }
+
+    class ExpressShipping {
+        +calculateShipping(): void
+    }
+
+    class StandardShipping {
+        +calculateShipping(): void
+    }
+
+    Context --> Strategy
+    Strategy <|.. ExpressShipping
+    Strategy <|.. StandardShipping
